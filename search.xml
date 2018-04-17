@@ -1,41 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title>你好啊,hexo</title>
-      <link href="/2018/04/15/%E4%BD%A0%E5%A5%BD%E5%95%8A-hexo/"/>
-      <content type="html"><![CDATA[<h1 id="Cmd-Markdown-简要使用手册"><a href="#Cmd-Markdown-简要使用手册" class="headerlink" title="Cmd Markdown 简要使用手册"></a>Cmd Markdown 简要使用手册</h1><p>标签（空格分隔）： markdown</p><hr><p>车事实上</p><p>###1.粗体和斜体<br>使用 <em> 和 ** 分别表示斜体和粗体<br>示例：<br>这是 </em>斜体* ，这是 <strong>粗体</strong></p><p>###2.分级标题<br>使用 === 表示一级标题，使用 — 表示二级标题<br>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这是一个一级标题</span><br><span class="line">=========================</span><br><span class="line">这是一个二级标题</span><br><span class="line">-------------------------</span><br><span class="line">### 这是一个三级标题</span><br></pre></td></tr></table></figure></p><p>你也可以选择在行首加上井号表示不同级别的标题（H1-H6），例如：#H1,##H2,###H3,####H4.</p><p>###3.外链接<br>使用 [描述](链接)为文字增加外链接<br>示例：<br>这是去往 <a href="http://github.com/koudui" target="_blank" rel="noopener">个人博客</a> 的链接</p><p>###4.无序列表<br>使用 *, +, -表示无序<br>示例：</p><ul><li>无序列表一</li><li>无序列表二</li></ul><ul><li>无序列表三</li><li>无序列表四</li></ul><ul><li>无序列表五<br>###5.有序列表<br>使用数字和点表示有序<br>示例：<br>1.有序列表一<br>2.有序列表二<br>3.有序列表三<br>###6.文字引用<br>使用 &gt; 表示文字引用<br>示例：<blockquote><p>野火烧不尽，春风吹又生<br>天行健，君子以自强不息</p></blockquote>###7.行内代码块<br>使用 `代码` 表示行内代码块<br>示例：<br>这是行内代码块 <code>html</code>。<br>这又是一个行内代码块：<code>css</code>。<br>###8.代码块<br>使用 四个缩进空格 表示代码块<br>示例：<br>  这是一个代码块，有四个缩进空格。<br>  int main(){};<br>###9.插入图像<br>使用 ![描述](图片链接地址)插入图像<br>示例：<br>这是 <img src="images/avatar.jpg" alt="我的头像"></li></ul><p>#</p>]]></content>
-      
+<search>
+  <entry>
+    <title><![CDATA[One Space]]></title>
+    <url>%2F2018%2F04%2F15%2FOne%20Space%2F</url>
+    <content type="text"><![CDATA[第一次发博客标签（空格分隔）： 随笔 花了两天的时间终于搭建了属于自己的静态博客网站，内心有一点小小的激动，但是也有一点苦恼。虽然博客是搭建好了，但是应该放哪些内容又是一个难题了，也许这个难题比搭建博客更难。从简单熟悉的入手吧，那就把博客作为分享自己平时技术积累的平台吧，有错误的地方，还望不吝赐教，这样自己也可以学习学习，哈哈。当然，也不忘发一点自己的感想、随笔，谢谢。]]></content>
       <categories>
-          
-          <category> 搭建博客 </category>
-          
+        <category>搭建博客</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> hexo </tag>
-            
-            <tag> github </tag>
-            
-            <tag> npm </tag>
-            
-            <tag> 基础 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2018/04/15/hello-world/"/>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-      
-      
-    </entry>
-    
-  
-  
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>
