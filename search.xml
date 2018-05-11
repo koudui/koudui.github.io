@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java 内部类]]></title>
+    <url>%2F2018%2F05%2F11%2FJava-%E5%86%85%E9%83%A8%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[[TOC] *感谢：https://www.nowcoder.com/profile/939213 #1 为什么使用内部类使用内部类最吸引人的原因是：每一个内部类都能独立继承一个（接口的）实现，所以无论外部类是否继承了某个（接口的）实现，对内部类来说都没有影响。使用内部类最大的优点就是能实现多重继承，并且内部类还具有以下特征：1）内部类可以使用多个实例，每个实例都有自己的状态信息，并且与其他外围对象相互独立。2）在单个外围类中，可以让多个内部类以不同的方式继承同一个类或者实现同一个接口。3）创建内部类的时刻并不依赖于外围类对象的创建。4）内部类没有令人迷惑的”is-a”关系，每一个内部类都是一个独立的主体。5）内部类提供了更好的封装，出来外围类，其他类都不能直接访问。 #2内部类分类 ##2.1成员内部类：1234567891011121314151617181920public class Outer&#123; private int age = 99; String name = "Coco"; public class Inner&#123; String name = "Jayden"; public void show()&#123; System.out.println(Outer.this.name); System.out.println(name); System.out.println(age); &#125; &#125; public Inner getInnerClass()&#123; return new Inner(); &#125; public static void main(String[] args)&#123; Outer o = new Outer(); Inner in = o.new Inner(); in.show(); &#125; &#125; 运行结果123CocoJayden99 1.Inner定义在Outer内部，相当于Outer的一个类成员变量，Inner可以使用任何访问控制符，包括public，private，protected。2.Inner中定义的方法可以直接访问Outer中的数据，如show()方法，并且不受访问控制符的影响。3.定义了成员内部类后，必须使用外部类对象来创建内部类对象，不能直接使用new创建一个内部类对象，即 内部类 对象名=外部类对象.new 内部类()4.上面的程序在编译后会生成两个.class文件，Outer.class和Outer$Inner.class5.成员内部类中不能存在有静态变量和方法，但可以定义常量：1）常量在编译时就确定了，放在常量池中。2）非静态内部类是依赖于外部类实例的，而静态变量和方法不依赖于对象，而与类有关。敲黑板：1）外部类不能直接访问内部类的成员和方法，可先创建内部类对象，然后根据内部类对象来访问其成员和方法。2）如果内部类和外部类具有相同的变量和方法，内部类默认访问自己的变量和方法，如果需要访问外部类的成员和方法，可以使用 外部类.this.变量名（方法名） ##2.2静态内部类（static）：1.静态内部类不能直接访问外部类的非静态成员，但是可以通过new 外部类().成员的方式来访问。2.如果外部类的静态成员和内部类成员名称相同，可通过外部类.静态成员的方式来访问；如果外部类的静态成员和内部类成员名称不同，则通过成员名直接访问外部类的静态成员。3.创建静态内部类对象时，可以不通过外部类对象，直接内部类 对象名=new 内部类()。123456789101112131415public class Outer&#123; private int age = 99; static String name = "Coco"; public static class Inner&#123; String name = "Jayden"; public void show()&#123; System.out.println(Outer.name); System.out.println(name); &#125; &#125; public static void main(String[] args)&#123; Inner i = new Inner(); i.show(); &#125; &#125; 运行结果12CocoJayden ##2.3方法内部类：仅作用于方法内，方法外不能访问该内部类1）局部内部类就像是方法里的一个局部变量，是不能有public，private，protected，static等修饰的。2）只能访问方法内部的final类型变量，因为：当方法被调用完毕后，局部变量就消亡了，但是内部类可能还存在，直到没有引用时才消亡，此时会发生一种情况，就是内部类要访问一个不存在的局部变量；使用final修饰符不仅会保持对象的引用不会改变，而且编译器还会持续维护这个对象在回调中的生命周期；局部内部类并不是直接调用方法传过来的参数，而是内部类将方法传过来的参数通过自己的构造器备份到了自己内部，自己的方法调用的是自己的属性而不是外来的参数；防止被篡改，保证局部内部类得到的值不会改变。1234567891011121314151617181920212223242526/* 使用的形参为何要为 final??? 在内部类中的属性和外部方法的参数两者从外表上看是同一个东西，但实际上却不是，所以他们两者是可以任意变化的， 也就是说在内部类中我对属性的改变并不会影响到外部的形参，而然这从程序员的角度来看这是不可行的， 毕竟站在程序的角度来看这两个根本就是同一个，如果内部类该变了，而外部方法的形参却没有改变这是难以理解 和不可接受的，所以为了保持参数的一致性，就规定使用 final 来避免形参的不改变 */ public class Outer&#123; public void Show()&#123; final int a = 25; int b = 13; class Inner&#123; int c = 2; public void print()&#123; System.out.println("访问外部类:" + a); System.out.println("访问内部类:" + c); &#125; &#125; Inner i = new Inner(); i.print(); &#125; public static void main(String[] args)&#123; Outer o = new Outer(); o.show(); &#125; &#125; 3)注意:在JDK8版本之中,方法内部类中调用方法中的局部变量,可以不需要修饰为 final,匿名内部类也是一样的，主要是JDK8之后增加了 Effectively final 功能http://docs.oracle.com/javase/tutorial/java/javaOO/localclasses.html反编译jdk8编译之后的class文件,发现内部类引用外部的局部变量都是 final 修饰的 ##2.4匿名内部类：1）匿名内部类时直接使用new来生成一个对象的引用。2）对于匿名类有一个缺陷，就是它仅能使用一次，不能重复使用。3）使用匿名内部类时，必须并且只能是继承一个类或者实现一个接口，但是两者不可兼得。4）匿名内部类中不能定义构造函数，也不能有静态成员和静态方法。5）匿名内部类不是抽象的，必须实现继承的类或实现的接口的所有抽象方法。6)匿名内部类初始化:使用构造代码块！利用构造代码块能够达到为匿名内部类创建一个构造器的效果。123456789101112131415161718public class OuterClass &#123; public InnerClass getInnerClass(final int num,String str2)&#123; return new InnerClass()&#123; int number = num + 3; public int getNumber()&#123; return number; &#125; &#125;; /* 注意：分号不能省 */ &#125; public static void main(String[] args) &#123; OuterClass out = new OuterClass(); InnerClass inner = out.getInnerClass(2, "chenssy"); System.out.println(inner.getNumber()); &#125; &#125; interface InnerClass &#123; int getNumber(); &#125; 运行结果15 #3总结细细想来，内部类还真是不简单呢，你看看这是写了多大的篇幅。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>内部类</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为eclipse添加反编译插件]]></title>
     <url>%2F2018%2F04%2F24%2F%E4%B8%BAeclipse%E6%B7%BB%E5%8A%A0%E5%8F%8D%E7%BC%96%E8%AF%91%E6%8F%92%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[要论Java最强IDE，还得eclipse。在实际开发过程中，一般来说，我们的项目或多或少的都会引用一些外部jar包，如果可以查看jar包的源代码，对于我们的调试可以说是事半功倍。有时会遇到需要查看类的源代码问题，这时候就需要添加一个非常好用的插件了，用来反编译。 下载并安装jad.exe。将jad.exe解压到任意文件目录（建议英文目录），例如：D:\Program Files\eclipse-mars2-64位\jad\jad.exe。 安装jadclipse插件。下载并解压net.sf.jadclipse_3.3.0.jar（根据自己的eclipse版本下载合适的jar包，如何查看eclipse版本？help–about eclipse–release）,将其拷贝到eclipse\plugins目录下，重新启动eclipse。 配置jadclipse。在eclipse窗口下，点击Window &gt; Preferences &gt; Java &gt; JadClipse &gt; Path to Decompiler。（设置jad的绝对路径，例如 D:\Program Files\eclipse-mars2-64位\jad\jad.exe) 可将Use Eclipse code formatter(overrides Jad formatting instructions)选项打勾，这样可以与Ctrl+Shif+F格式化出来的代码样式一致。执行完这几个步骤，再在导入自Jar包的类或者方法上点击查看，就可以查看源代码了。 如果不能，参考下面的解决办法：多数情况下，是eclipse未能自动将JadClipse Class File Viewer设置成class文件的缺省打开方式。在Eclipse的Windows——&gt; Perference——&gt;General-&gt;Editors-&gt;File Associations中修改“*.class”和“*.class without source”默认关联的编辑器为“JadClipse Class File Viewer”。 下载地址：jadclipse：http://jadclipse.sourceforge.net/wiki/index.php/Main_Page#Downloadjad.exe： https://varaneckas.com/jad/]]></content>
@@ -31,17 +42,6 @@
       </categories>
       <tags>
         <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Java中的知识点]]></title>
-    <url>%2F2018%2F04%2F17%2FJava%E4%B8%AD%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>基础</tag>
       </tags>
   </entry>
 </search>
